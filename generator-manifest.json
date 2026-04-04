@@ -1,0 +1,19 @@
+{
+  "branch": "main",
+  "depends_recipe": "",
+  "description_control": "Automatic Timerlist Cleanup Plugin",
+  "description_recipe": "Automatic Timerlist Cleanup Plugin",
+  "history_source_dir": "automatictimerlistcleanup",
+  "internal_package_name": "enigma2-plugin-systemplugins-automatictimerlistcleanup",
+  "module_dir_name": "AutomaticTimerlistCleanup",
+  "output_subdir": "automatictimerlistcleanup",
+  "package_name": "enigma2-plugin-systemplugins-automatictimerlistcleanup",
+  "plugin_src_rel": "automatictimerlistcleanup",
+  "python_package": "AutomaticTimerlistCleanup",
+  "rdepends_recipe": "",
+  "replaces": "",
+  "repo_name": "AutomaticTimerlistCleanup",
+  "rrecommends": "",
+  "rreplaces": "",
+  "selected_from_plugin_list": true
+}
