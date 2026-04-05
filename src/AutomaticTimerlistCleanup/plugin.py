@@ -21,11 +21,8 @@ from __future__ import print_function
 #  distributed other than under the conditions noted above.
 #
 from Plugins.Plugin import PluginDescriptor
-from Screens.Screen import Screen
-from Components.ActionMap import ActionMap
-from Components.Sources.StaticText import StaticText
-from Components.config import config, ConfigSubsection, ConfigSelection, getConfigListEntry
-from Components.ConfigList import ConfigListScreen
+from Components.config import config, ConfigSubsection, ConfigSelection
+from Screens.Setup import Setup
 from enigma import eTimer
 from time import time, strftime, localtime
 from timer import TimerEntry
@@ -37,41 +34,10 @@ config.plugins.automatictimerlistcleanup = ConfigSubsection()
 config.plugins.automatictimerlistcleanup.type = ConfigSelection(default="-1", choices=[("-1", _("disabled")), ("0", _("immediately after recording")), ("1", _("older than 1 day")), ("3", _("older than 3 days")), ("7", _("older than 1 week")), ("14", _("older than 2 weeks")), ("28", _("older than 4 weeks")), ("42", _("older than 6 weeks"))])
 
 
-class AutomaticTimerlistCleanUpSetup(ConfigListScreen, Screen):  # config
-
-	skin = """
-		<screen position="center,center" size="560,400" title="%s" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<widget render="Label" source="key_red" position="0,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget render="Label" source="key_green" position="140,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="config" position="20,50" size="520,330" scrollbarMode="showOnDemand" />
-		</screen>""" % _("Automatic Timerlist Cleanup Setup")
+class AutomaticTimerlistCleanUpSetup(Setup):
 
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-		self.list = []
-		self.list.append(getConfigListEntry(_("Cleanup timerlist-entries"), config.plugins.automatictimerlistcleanup.type))
-		ConfigListScreen.__init__(self, self.list, session)
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
-		{
-			"green": self.keySave,
-			"cancel": self.keyClose,
-		}, -2)
-
-	def keySave(self):
-		for x in self["config"].list:
-			x[1].save()
-		self.close(True)
-
-	def keyClose(self):
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close(False)
+		Setup.__init__(self, session, "automatictimerlistcleanup", plugin="Extensions/AutomaticTimerlistCleanup", PluginLanguageDomain="AutomaticTimerlistCleanup")
 
 
 class AutomaticTimerlistCleanUp:

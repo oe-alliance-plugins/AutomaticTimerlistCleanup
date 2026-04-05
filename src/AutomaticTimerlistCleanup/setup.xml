@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<setupxml>
+	<setup key="automatictimerlistcleanup" title="Automatic Timerlist Cleanup Setup">
+		<item level="0" text="Cleanup timerlist-entries" description="Select when to clean up old timerlist entries">config.plugins.automatictimerlistcleanup.type</item>
+	</setup>
+</setupxml>
