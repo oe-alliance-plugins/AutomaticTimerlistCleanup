@@ -37,7 +37,7 @@ config.plugins.automatictimerlistcleanup.type = ConfigSelection(default="-1", ch
 class AutomaticTimerlistCleanUpSetup(Setup):
 
 	def __init__(self, session):
-		Setup.__init__(self, session, "automatictimerlistcleanup", plugin="Extensions/AutomaticTimerlistCleanup", PluginLanguageDomain="AutomaticTimerlistCleanup")
+		Setup.__init__(self, session, "automatictimerlistcleanup", plugin="SystemPlugins/AutomaticTimerlistCleanup", PluginLanguageDomain="AutomaticTimerlistCleanup")
 
 
 class AutomaticTimerlistCleanUp:
